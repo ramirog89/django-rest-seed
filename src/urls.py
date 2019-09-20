@@ -12,7 +12,7 @@ from rest_framework import routers, permissions
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView, TokenVerifyView 
 
 # application views
-from tutorial.quickstart import views
+from src.app import views
 
 # schema for swagger
 schema_view = get_schema_view(

@@ -7,7 +7,7 @@ install:
 	pip install --upgrade -r requirements.txt
 
 test:
-	coverage run --source="./tutorial/" manage.py test tutorial
+	coverage run --source="./src/" manage.py test src
 	coverage html -d coverage
 	coverage erase
 

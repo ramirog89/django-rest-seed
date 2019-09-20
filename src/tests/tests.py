@@ -6,7 +6,7 @@ from rest_framework.test import (
   force_authenticate
 )
 
-from ..quickstart.views import HelloView
+from ..app.views import HelloView
 
 class HelloWorldTest(APITestCase):
     def setUp(self):

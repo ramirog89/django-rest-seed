@@ -35,5 +35,8 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('post/get', views.PostView.as_view({ 'get': 'list' }), name='post_get'),
+    path('posts', views.PostView.as_view({'get': 'list'}), name='posts_list'),
+    path('posts/create', views.PostView.as_view({'create': 'create'}), name='posts_create'),
+    path('posts/update', views.PostView.as_view({'update': 'update'}), name='posts_update'),
+    path('posts/delete', views.PostView.as_view({'delete': 'delete'}), name='posts_delete'),
 ]

@@ -9,9 +9,8 @@ class PostView(viewsets.ModelViewSet):
     queryset = PostModel.objects.all()
     serializer_class = PostSerializer
 
-    def get(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
+    def list(self, request):
+        return Response(PostModel.objects.all())
 
     def create(self, request):
         content = {'message': 'Hello, World!'}

@@ -2,13 +2,17 @@ initdb:
 	python manage.py syncdb
 	python manage.py migrate
 
+migrate:
+	python manage.py migrate
+
 install:
 	pip install --upgrade setuptools
 	pip install --upgrade -r requirements.txt
 
 test:
-	coverage run --source="./src/" manage.py test src
+	coverage run --source="./src/app" manage.py test src
 	coverage html -d coverage
+	coverage report -m
 	coverage erase
 
 server:

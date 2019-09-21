@@ -10,6 +10,13 @@ https://github.com/davesque/django-rest-framework-simplejwt
 1 https://github.com/axnsan12/drf-yasg#installation
 2 https://drf-yasg.readthedocs.io/en/stable/security.html -> config
 
+# MIDDLEARES
+# SERVICES + BUSINESS LOGIC
+https://mitchel.me/2017/django-service-objects/
+https://django-service-objects.readthedocs.io/en/latest/
+https://medium.com/@jairvercosa/business-logic-in-django-projects-7fe700db9b0a
+https://uniwebsidad.com/libros/django-1-0/capitulo-15/que-sigue-15
+
 # PA LEER:
 1 https://medium.com/backticks-tildes/lets-build-an-api-with-django-rest-framework-part-2-cfb87e2c8a6c
 
@@ -20,7 +27,7 @@ https://coverage.readthedocs.io/en/v4.5.x/cmd.html#execution
 https://docs.djangoproject.com/en/2.2/topics/testing/advanced/#testing-reusable-applications
 https://medium.com/sulang/testing-django-rest-framework-d98279a5d3a5
 
-# DEploy Prod?
+# Deploy Prod
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
 # PoC:

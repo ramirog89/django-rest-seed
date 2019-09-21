@@ -60,3 +60,12 @@ https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
 
 me gusta el README de aca
 https://github.com/erkarl/django-rest-framework-oauth2-provider-example
+
+# Siguientes pasos
+Implementar los Servicios para la abstraccion de logica de negocios
+Crear el ABM de usuarios
+Crear ABM de tags
+Relacion 1 a 1 post - user
+Relacion n a n post - tags
+Plan bien definido de migraciones
+Como se hacen bien de 0 y cada cambio como se realiza correctamente.

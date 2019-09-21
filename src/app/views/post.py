@@ -48,7 +48,7 @@ class PostList(ListCreateAPIView):
     # permission_classes = (IsAuthenticated,)
     
     def get_queryset(self):
-       postList = PostModel.objects.all()
+       postList = PostModel.objects.get_queryset().order_by('id')
        return postList
 
     # Get list

@@ -1,38 +1,68 @@
-from rest_framework import viewsets
-from rest_framework.views import APIView
+from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.decorators import action
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
 
 from src.app.models.post import PostModel
 from src.app.serializer.post import PostSerializer
 
-class PostViewSet(viewsets.ViewSet):
-    # permission_classes = (IsAuthenticated,)
-    queryset = PostModel.objects.all()
+class PostCreateUpdateDelete(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
+    # permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)
 
-    def list(self, request):
-        return Response(PostModel.objects.all())
-
-    def get(self, request, pk=None):
-        return Response(PostModel.objects.get(id=pk))
-
-    @action(methods=['post'], detail=False)
-    def create(self, request, post=None):
-        print(post)
+    def get_queryset(self, pk):
         try:
-            post = Post.objects.create(title=post.title, body=post.body, date=post.date)
-            post.save();
-            return Response('Post created successfully', 200)
-        except:
-            return Response('Error on create post', 500)
+            post = PostModel.objects.get(pk=pk)
+        except PostModel.DoesNotExist:
+            content = {
+              'status': 'Not Found'
+            }
+            return Response(content, status=status.HTTP_404_NOT_FOUND)
+        return post
 
-    def update(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
+    # Get
+    def get(self, request, pk):
+        post = self.get_queryset(pk)
+        serializer = PostSerializer(post)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def delete(self, request):
-        content = {'message': 'Hello, World!'}
-        return Response(content)
+    # Update
+    def put(self, request, pk):
+        post = self.get_queryset(pk)
+        serializer = PostSerializer(post, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+      post = self.get_queryset(pk)
+      post.delete()
+      content = {
+          'status': 'NO CONTENT'
+      }
+      return Response(content, status=status.HTTP_204_NO_CONTENT)
+   
+
+class PostList(ListCreateAPIView):
+    serializer_class = PostSerializer
+    # permission_classes = (IsAuthenticated,)
+    
+    def get_queryset(self):
+       postList = PostModel.objects.all()
+       return postList
+
+    # Get list
+    def get(self, request):
+        postList = self.get_queryset()
+        paginate_queryset = self.paginate_queryset(postList)
+        serializer = self.serializer_class(paginate_queryset, many=True)
+        return self.get_paginated_response(serializer.data)
+
+    # Create
+    def post(self, request):
+        serializer = PostSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

@@ -1,4 +1,10 @@
-env/
-.vscode/
-*.pyc
+# DIRS
 coverage/
+logs/
+
+# IDE
+.vscode/
+
+# PYTHON ENV
+env/
+*.pyc

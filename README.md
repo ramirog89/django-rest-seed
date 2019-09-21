@@ -11,11 +11,12 @@ https://github.com/davesque/django-rest-framework-simplejwt
 2 https://drf-yasg.readthedocs.io/en/stable/security.html -> config
 
 # MIDDLEARES
+https://simpleisbetterthancomplex.com/tutorial/2016/07/18/how-to-create-a-custom-django-middleware.html
+https://uniwebsidad.com/libros/django-1-0/capitulo-15/que-sigue-15
 # SERVICES + BUSINESS LOGIC
 https://mitchel.me/2017/django-service-objects/
 https://django-service-objects.readthedocs.io/en/latest/
 https://medium.com/@jairvercosa/business-logic-in-django-projects-7fe700db9b0a
-https://uniwebsidad.com/libros/django-1-0/capitulo-15/que-sigue-15
 
 # PA LEER:
 1 https://medium.com/backticks-tildes/lets-build-an-api-with-django-rest-framework-part-2-cfb87e2c8a6c

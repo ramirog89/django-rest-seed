@@ -1,5 +1,5 @@
 # django url handler
-from django.urls import include, path
+from django.urls import include, path, re_path
 
 # swagger views
 from drf_yasg.views import get_schema_view
@@ -38,9 +38,13 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    path('api/posts/', views.PostViewSet.as_view({'get': 'list'}), name='post-list'),
-    path('api/posts/<int:pk>', views.PostViewSet.as_view({'get': 'get'}), name='post-detail'),
-    path('api/posts/create', views.PostViewSet.as_view({'post': 'create'}), name='post_create'),
-    path('api/posts/update/<int:pk>', views.PostViewSet.as_view({'put': 'update'}), name='post_update'),
-    path('api/posts/delete', views.PostViewSet.as_view({'delete': 'delete'}), name='post_delete'),
+    re_path(r'^api/posts/(?P<pk>[0-9]+)$', # Url to get update or delete a movie
+        views.PostCreateUpdateDelete.as_view(),
+        name='PostCreateUpdateDelete'
+    ),
+    path('api/posts/', # urls list all and create new one
+        views.PostList.as_view(),
+        name='post-list'
+    )
+
 ]

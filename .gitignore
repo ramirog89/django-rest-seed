@@ -1,6 +1,7 @@
 # DIRS
-coverage/
+build/
 logs/
+coverage/
 
 # IDE
 .vscode/

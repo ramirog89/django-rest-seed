@@ -9,7 +9,7 @@ class PostCreateUpdateDelete(RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
     # permission_classes = (IsAuthenticated, IsOwnerOrReadOnly,)
 
-    def get_queryset(self, pk):
+    def get_queryset(self, pk=None):
         try:
             post = PostModel.objects.get(pk=pk)
         except PostModel.DoesNotExist:
@@ -21,13 +21,13 @@ class PostCreateUpdateDelete(RetrieveUpdateDestroyAPIView):
 
     # Get
     def get(self, request, pk):
-        post = self.get_queryset(pk)
+        post = self.get_queryset(pk=pk)
         serializer = PostSerializer(post)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     # Update
     def put(self, request, pk):
-        post = self.get_queryset(pk)
+        post = self.get_queryset(pk=pk)
         serializer = PostSerializer(post, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -35,7 +35,7 @@ class PostCreateUpdateDelete(RetrieveUpdateDestroyAPIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
-      post = self.get_queryset(pk)
+      post = self.get_queryset(pk=pk)
       post.delete()
       content = {
           'status': 'NO CONTENT'

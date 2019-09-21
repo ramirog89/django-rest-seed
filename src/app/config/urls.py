@@ -29,7 +29,6 @@ schema_view = get_schema_view(
 # Register routers
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet)
-# router.register(r'posts', views.PostViewSet, basename='post')
 
 # Url patterns registered in the application
 urlpatterns = [
@@ -38,13 +37,6 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    re_path(r'^api/posts/(?P<pk>[0-9]+)$', # Url to get update or delete a movie
-        views.PostCreateUpdateDelete.as_view(),
-        name='PostCreateUpdateDelete'
-    ),
-    path('api/posts/', # urls list all and create new one
-        views.PostList.as_view(),
-        name='post-list'
-    )
-
+    re_path(r'^api/posts/(?P<pk>[0-9]+)$', views.PostCreateUpdateDelete.as_view(), name='PostCreateUpdateDelete'),
+    path('api/posts/', views.PostList.as_view(), name='post-list')
 ]

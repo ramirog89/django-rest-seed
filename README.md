@@ -27,6 +27,14 @@ https://medium.com/@jairvercosa/business-logic-in-django-projects-7fe700db9b0a
 https://coverage.readthedocs.io/en/v4.5.x/cmd.html#execution
 https://docs.djangoproject.com/en/2.2/topics/testing/advanced/#testing-reusable-applications
 https://medium.com/sulang/testing-django-rest-framework-d98279a5d3a5
+- Colores en los tests...?
+ Red green unit test: https://github.com/stevematney/redgreenunittests
+
+# MAKEFILE
+https://krzysztofzuraw.com/blog/2016/makefiles-in-python-projects.html
+
+# SETUP.py?
+https://lincolnloop.com/blog/using-setuppy-your-django-project/
 
 # Deploy Prod
 https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment

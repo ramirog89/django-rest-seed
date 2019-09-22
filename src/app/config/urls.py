@@ -37,6 +37,8 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    re_path(r'^api/posts/(?P<pk>[0-9]+)$', views.PostCreateUpdateDelete.as_view(), name='PostCreateUpdateDelete'),
-    path('api/posts/', views.PostList.as_view(), name='post-list')
+    re_path(r'^api/posts/(?P<pk>[0-9]+)$', views.PostCreateUpdateDelete.as_view(), name='post_create_update_delete'),
+    path('api/posts/', views.PostList.as_view(), name='post_ist'),
+    re_path(r'^api/tags/(?P<pk>[0-9]+)$', views.TagCreateUpdateDelete.as_view(), name='tag_create_update_delete'),
+    path('api/tags/', views.TagList.as_view(), name='tag_ist')
 ]

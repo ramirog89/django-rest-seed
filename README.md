@@ -69,3 +69,8 @@ Relacion 1 a 1 post - user
 Relacion n a n post - tags
 Plan bien definido de migraciones
 Como se hacen bien de 0 y cada cambio como se realiza correctamente.
+
+Ver el tema de serializers para relaciones multiples
+create/update/deletE?. ... 
+
+Custom Permissions para la autorizacion (ACL... que no es por token?)

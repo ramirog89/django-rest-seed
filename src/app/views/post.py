@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView
+from rest_framework.permissions import IsAuthenticated
 
 from src.app.models import PostModel
 from src.app.serializer.post import PostSerializer, PostCreateSerializer
@@ -46,7 +47,7 @@ class PostCreateUpdateDelete(RetrieveUpdateDestroyAPIView):
    
 
 class PostList(MethodSerializerView, ListCreateAPIView):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     serializer_class = PostSerializer
     method_serializer_classes = {
         ('GET', ): PostSerializer,

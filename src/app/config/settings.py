@@ -93,6 +93,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'src.app.config.pagination.CustomPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # 'src.app.service.authentication.AuthenticationService'
     ),
 }
 

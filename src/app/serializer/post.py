@@ -13,13 +13,13 @@ class PostSerializer(serializers.ModelSerializer):
 class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostModel
-        fields = ['title', 'body', 'date', 'tags']
+        fields = ['title', 'body', 'date']
     
     def create(self, validated_data):
-        tags_data = validated_data.pop('tags')
+        # tags_data = validated_data.pop('tags')
         post = PostModel.objects.create(**validated_data)
-        for tagId in tags_data:
-            print(tagId)
+        # for tagId in tags_data:
+        #     print(tagId)
             # tag = TagModel.objects.get(pk=tagId)
             # post.add(tag)
         return post

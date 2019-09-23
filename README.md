@@ -1,10 +1,11 @@
 django-rest-seed
 ===================
-Working example of [django-rest-framework](https://github.com/tomchristie/django-rest-framework/tree/master) using JWTAuthentication ([rest_framework_simplejwt](https://github.com/davesque/django-rest-framework-simplejwt)) and SessionAuthentication for browseable API. Cross-Origin Resource Sharing is also enabled via [django-cors-headers](https://github.com/ottoyiu/django-cors-headers).
+Working example of [django-rest-framework](https://github.com/tomchristie/django-rest-framework/tree/master)
+JWTAuthentication with simpleJwt ([rest_framework_simplejwt](https://github.com/davesque/django-rest-framework-simplejwt))
 
 ## Requirements 
 * You should have [virtualenv](http://www.virtualenv.org/en/latest/#installation) installed. 
-* Make sure your [SSH keys](https://help.github.com/articles/generating-ssh-keys) are set up properly for GitHub.
+* You should have [pip](https://pypi.org/project/pip/) installed.
 
 ## Install 
 Clone this repo, set up and activate a virtualenv:

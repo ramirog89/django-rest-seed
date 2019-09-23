@@ -20,21 +20,16 @@ Setup dependencies:
 make install
 ```
 
+```console
+make initdb
+python manage.py createsuperuser --username {username}
+```
+
 ## Run the server 
 ```console
 make server
 ```
 Launch [http://localhost:7000](http://localhost:7000) in your browser.
-
-Default **username** is `ar` and **pasword** `ar` with a preconfigured client already set up. 
-
-**...in case** you'd like to start fresh:
-```console
-rm src/app/database/db.sqlite3
-make initdb
-```
-
-...then head over to [Django admin](http://localhost:7000/admin/) and create your first client.
 
 ## Tests 
 ```console

@@ -1,4 +1,5 @@
 from rest_framework import exceptions
+import inspect
 
 class MethodSerializerView(object):
     '''
@@ -17,8 +18,15 @@ class MethodSerializerView(object):
             'to get right serializer class.' %
             (self.__class__.__name__, )
         )
-        for methods, serializer_cls in self.method_serializer_classes.items():
-            if self.request.method in methods:
+        # m = inspect.getmembers(self.__class__.__name__)
+        # method_list = [func for func in dir(self.__class__.__name__) if callable(getattr(__class__.__name__, func))]
+        # print("method_list", method_list)
+        # print("entra aca entonces", self.__class__.__name__)
+        # print(self.request.method)
+        print(self.method_serializer_classes.items())
+        for actions, serializer_cls in self.method_serializer_classes.items():
+            print(serializer_cls)
+            if self.request.method in actions:
                 return serializer_cls
 
         raise exceptions.MethodNotAllowed(self.request.method)

@@ -74,3 +74,12 @@ Ver el tema de serializers para relaciones multiples
 create/update/deletE?. ... 
 
 Custom Permissions para la autorizacion (ACL... que no es por token?)
+
+# MEETING
+refactorizar 
+
+views > services > models + queries
+rename views > controllers
+
+usar test runner
+test por capa.

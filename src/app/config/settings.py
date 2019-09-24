@@ -167,6 +167,10 @@ LOGGING = {
     },
 }
 
+MIGRATION_MODULES = {
+    'app': 'src.app.database',
+}
+
 TEST_RUNNER="redgreenunittest.django.runner.RedGreenDiscoverRunner"
 
 # Internationalization

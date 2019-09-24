@@ -3,9 +3,9 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenViewBase
 from rest_framework.permissions import IsAuthenticated
 
-from src.app.serializer import TokenSerializer, EmptySerializer
+from src.app.serializer import TokenSerializer
 
-class AuthenticationView(TokenViewBase, viewsets.GenericViewSet):
+class AuthenticationController(TokenViewBase, viewsets.GenericViewSet):
   blackList = []
 
   def get_permissions(self):
@@ -20,7 +20,7 @@ class AuthenticationView(TokenViewBase, viewsets.GenericViewSet):
     if self.action == 'login':
       return TokenSerializer
     else:
-      return EmptySerializer
+      return TokenSerializer
 
   def login(self, request, *args, **kwargs):
     tokenResponse = super().post(request, args, kwargs)

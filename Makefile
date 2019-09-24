@@ -13,6 +13,12 @@ clean:
 	rm -r logs/*
 	rm -rf *.egg-info
 
+createdatabase:
+	docker mysql
+
+databaserun:
+	docker run mysql
+
 install:
 	pip install --upgrade setuptools
 	pip install --upgrade -r requirements.txt

@@ -7,7 +7,7 @@ from rest_framework.test import (
   force_authenticate
 )
 
-from ..app.views import PostList
+from ..app.controllers import PostList
 
 class PostListTest(APITestCase):
     def setUp(self):

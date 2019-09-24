@@ -12,7 +12,7 @@ from rest_framework import routers, permissions
 from rest_framework_simplejwt.views import TokenRefreshView, TokenVerifyView 
 
 # application views
-from src.app import views
+from src.app import controllers
 
 # schema for swagger
 schema_view = get_schema_view(
@@ -32,12 +32,13 @@ router = routers.DefaultRouter()
 # Url patterns registered in the application
 urlpatterns = [
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('api/auth/login', views.AuthenticationView.as_view({'post' : 'login'}), name='auth_login'),
-    path('api/auth/logout', views.AuthenticationView.as_view({'post': 'logout'}), name='auth_logout'),
+    path('api/auth/login', controllers.AuthenticationController.as_view({'post' : 'login'}), name='auth_login'),
+    path('api/auth/logout', controllers.AuthenticationController.as_view({'post': 'logout'}), name='auth_logout'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
-    re_path(r'^api/posts/(?P<pk>[0-9]+)$', views.PostCreateUpdateDelete.as_view(), name='post_create_update_delete'),
-    path('api/posts/', views.PostList.as_view(), name='post_ist'),
-    re_path(r'^api/tags/(?P<pk>[0-9]+)$', views.TagCreateUpdateDelete.as_view(), name='tag_create_update_delete'),
-    path('api/tags/', views.TagList.as_view(), name='tag_ist')
+    path('api/account/', controllers.AccountController.list, name='account_list'),
+    path('api/account/create', controllers.AccountController.create, name='account_create'),
+    path('api/account/update', controllers.AccountController.update, name='account_update'),
+    path('api/account/delete', controllers.AccountController.delete, name='account_delete'),
+    path('api/account/special-endpoint', controllers.AccountController.someBusinessLogicEndpoint, name='account_special_endpoint'),
 ]

@@ -18,7 +18,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'src.app.apps.AppConfig',
+    'src.app',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -167,9 +167,9 @@ LOGGING = {
     },
 }
 
-MIGRATION_MODULES = {
-    'app': 'src.app.database',
-}
+# MIGRATION_MODULES = {
+#     'app': 'src.app.database',
+# }
 
 TEST_RUNNER="redgreenunittest.django.runner.RedGreenDiscoverRunner"
 

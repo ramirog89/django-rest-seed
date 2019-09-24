@@ -7,6 +7,7 @@ class AccountModel(models.Model):
     created_at = models.DateField()
 
     class Meta:
+        db_table = 'account'
         ordering = ('name',)
 
     def __str__(self):
@@ -16,7 +17,7 @@ class AccountManager:
     model = AccountModel
 
     def getAllAccounts(self):
-        return self.model.objects.all()
+        return self.model.objects.values()
 
     def getParticularAccounts(self):
         return self.model.objects.all()

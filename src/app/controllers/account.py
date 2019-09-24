@@ -1,18 +1,27 @@
 from django.http import JsonResponse
 from rest_framework.viewsets import ViewSet
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 
 from src.app.service.account import AccountService
+from src.app.serializer.account import ListSerializer, CreateSerializer
+from .method_serializer import MethodSerializerView
 
-class AccountController(ViewSet):
-    permission_classes = [IsAuthenticated]
+# class AccountController(ViewSet):
+class AccountController(MethodSerializerView, ViewSet):
     service = AccountService()
+    # permission_classes = [IsAuthenticated]
+    method_serializer_classes = { # hacer funcionar esto con request.action no request.method :)
+        ('POST'): CreateSerializer
+    }
 
     def list(self, request):
         accountList = self.service.getAll()
-        return JsonResponse(accountList)
+        serializer = ListSerializer(data=accountList)
+        serializer.is_valid()
+        return JsonResponse(serializer.validated_data)
 
-    def create(request):
+    def create(self, request):
         print(request)
         return JsonResponse({ 'result': 'something' })
 

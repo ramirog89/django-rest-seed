@@ -38,7 +38,7 @@ urlpatterns = [
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/account/', controllers.AccountController.as_view({'get':'list'}), name='account_list'),
     path('api/account/create', controllers.AccountController.as_view({'post':'create'}), name='account_create'),
-   #  path('api/account/update', controllers.AccountController.update, name='account_update'),
-   #  path('api/account/delete', controllers.AccountController.delete, name='account_delete'),
+    path('api/account/update', controllers.AccountController.as_view({'put':'update'}), name='account_update'),
+    path('api/account/delete', controllers.AccountController.as_view({'delete':'delete'}), name='account_delete'),
    #  path('api/account/special-endpoint', controllers.AccountController.someBusinessLogicEndpoint, name='account_special_endpoint'),
 ]

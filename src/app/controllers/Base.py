@@ -1,7 +1,8 @@
 from rest_framework import exceptions
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.generics import RetrieveUpdateDestroyAPIView
 
-class BaseController(GenericViewSet):
+class BaseController(GenericViewSet, RetrieveUpdateDestroyAPIView):
   '''
   Utility class for get different serializer class by method.
   For example:
@@ -51,6 +52,9 @@ class BaseController(GenericViewSet):
         actionHandler = action
         methodHttp = method
 
+      print(request)
+      print(args)
+      print(kwargs)
       try:
           self.initial(request, *args, **kwargs)
           # Armo mi propio check corroborando que el action Handler esta registrado en el Controller

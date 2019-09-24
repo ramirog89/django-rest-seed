@@ -16,6 +16,9 @@ class AccountModel(models.Model):
 class AccountManager:
     model = AccountModel
 
+    def getById(self, pk):
+        return self.model.objects.get(pk=pk)
+
     def getAllAccounts(self):
         return self.model.objects.values()
 

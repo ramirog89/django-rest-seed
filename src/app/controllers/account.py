@@ -1,37 +1,29 @@
-from django.http import HttpResponse
-from django.views.generic import View
-from django.views.decorators.http import require_http_methods
-from django.utils.decorators import method_decorator
-from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from rest_framework.viewsets import ViewSet
+from rest_framework.permissions import IsAuthenticated
 
 from src.app.service.account import AccountService
 
-class AccountController(View):
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+class AccountController(ViewSet):
+    permission_classes = [IsAuthenticated]
+    service = AccountService()
 
-    @require_http_methods(["GET"])
     def list(self, request):
-        print(request)
-        return HttpResponse({ 'result': 'something' })
+        accountList = self.service.getAll()
+        return JsonResponse(accountList)
 
-    @require_http_methods(["POST"])
-    def create(self, request):
+    def create(request):
         print(request)
-        return HttpResponse({ 'result': 'something' })
+        return JsonResponse({ 'result': 'something' })
 
-    @require_http_methods(["PUT"])
     def update(self, request):
         print(request)
-        return HttpResponse({ 'result': 'something' })
+        return JsonResponse({ 'result': 'something' })
 
-    @require_http_methods(["DELETE"])
     def delete(self, request):
         print(request)
-        return HttpResponse({ 'result': 'something' })
+        return JsonResponse({ 'result': 'something' })
 
-    @require_http_methods(["GET"])
     def someBusinessLogicEndpoint(self, request):
         print(request)
-        return AccountService.getSpecificAccount()
+        return self.service.getSpecificAccount()

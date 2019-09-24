@@ -12,11 +12,11 @@ class AccountModel(models.Model):
     def __str__(self):
         return self.name
 
-class AccountManager():
+class AccountManager:
     model = AccountModel
 
-    def getAllAccounts():
+    def getAllAccounts(self):
         return self.model.objects.all()
 
-    def getParticularAccounts():
+    def getParticularAccounts(self):
         return self.model.objects.all()

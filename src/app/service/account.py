@@ -1,5 +1,10 @@
 from src.app.models.account import AccountManager
 
 class AccountService:
-  def getSpecificAccount():
-    return AccountManager.getAllAccounts()
+  accountManager = AccountManager()
+
+  def getAll(self):
+    return self.accountManager.getAllAccounts()
+
+  def getSpecificAccount(self):
+    return self.accountManager.getAllAccounts()

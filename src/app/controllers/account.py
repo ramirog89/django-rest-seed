@@ -11,7 +11,7 @@ from .Base import BaseController
 
 class AccountController(BaseController):
     service = AccountService()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     method_serializer_classes = {
         ('create'): CreateSerializer
     }
@@ -22,6 +22,11 @@ class AccountController(BaseController):
         serializer = ListSerializer(paginate_queryset, many=True)
         return self.get_paginated_response(serializer.data)
 
+    def accountDetail(self, request, pk):
+        account = self.service.getById(pk=pk)
+        serializer = ListSerializer(account)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def create(self, request):
         serializer = CreateSerializer(data=request.data)
         if serializer.is_valid(raise_exception=True):
@@ -29,9 +34,8 @@ class AccountController(BaseController):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
     def update(self, request, pk):
-        account = AccountService.getById(pk)
+        account = self.service.getById(pk=pk)
         serializer = CreateSerializer(account, data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -40,13 +44,13 @@ class AccountController(BaseController):
 
     def delete(self, request, pk):
         try:
-            account = AccountService.getById(pk)
+            account = self.service.getById(pk=pk)
             account.delete()
             content = { 'status': 'NO CONTENT' }
             return Response(content, status=status.HTTP_204_NO_CONTENT)
         except:
             return Response({ 'error': 'SERVER ERROR' }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-    def someBusinessLogicEndpoint(self, request):
-        print(request)
-        return self.service.getSpecificAccount()
+    def specialEndpoint(self, request):
+        account = self.service.getSpecificAccount()
+        return Response(account, status=status.HTTP_200_OK)

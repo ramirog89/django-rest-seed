@@ -42,3 +42,15 @@ Launch [http://localhost:7000](http://localhost:7000) in your browser.
 ```console
 make test 
 ```
+
+## Docker 
+
+Image build
+```console
+dockerbuild . -t python-django-starter 
+```
+
+Image run
+```console
+docker run -p:7000:7000 -i -t python-django-starter 
+```

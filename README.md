@@ -26,10 +26,16 @@ make initdb
 python manage.py createsuperuser --username {username}
 ```
 
-## Run the server 
+## Run the server:development
 ```console
-make server
+make dev
 ```
+
+## Run the server:production
+```console
+make prod
+```
+
 Launch [http://localhost:7000](http://localhost:7000) in your browser.
 
 ## Tests 

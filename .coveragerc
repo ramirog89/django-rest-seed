@@ -1,0 +1,5 @@
+[run]
+omit =
+    src/app/config/*
+    src/app/database/*
+    src/app/migrations/*

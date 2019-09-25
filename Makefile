@@ -24,7 +24,7 @@ install:
 	pip install --upgrade -r requirements.txt
 
 test:
-	coverage run --source="./src/app" manage.py test src
+	coverage run --source="./src/app" manage.py test src --force-color
 	coverage html -d coverage
 	coverage report -m
 	coverage erase

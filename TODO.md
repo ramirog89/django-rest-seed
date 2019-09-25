@@ -76,10 +76,17 @@ create/update/deletE?. ...
 Custom Permissions para la autorizacion (ACL... que no es por token?)
 
 # MEETING
-refactorizar 
+refactorizar  ok
 
-views > services > models + queries
-rename views > controllers
+views > services > models + queries ok
+rename views > controllers ok
 
 usar test runner
 test por capa.
+
+# Settings para production/development
+- https://stackoverflow.com/questions/10664244/django-how-to-manage-development-and-production-settings
+- https://docs.djangoproject.com/en/2.1/topics/settings/#envvar-DJANGO_SETTINGS_MODULE
+
+# Testing Unit vs Integration
+- https://realpython.com/python-testing/#unit-tests-vs-integration-tests

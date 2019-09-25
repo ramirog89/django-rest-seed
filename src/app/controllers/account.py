@@ -11,7 +11,7 @@ from .Base import BaseController
 
 class AccountController(BaseController):
     service = AccountService()
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     method_serializer_classes = {
         ('create'): CreateSerializer
     }

@@ -9,6 +9,7 @@ class AccountModel(models.Model):
     class Meta:
         db_table = 'account'
         ordering = ('name',)
+        app_label = 'something'
 
     def __str__(self):
         return self.name

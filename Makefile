@@ -1,3 +1,5 @@
+.PHONY : start_server dev prod
+
 initdb:
 	python manage.py migrate
 
@@ -29,8 +31,12 @@ test:
 	coverage report -m
 	coverage erase
 
-server:
-	python manage.py runserver 0.0.0.0:7000
+local: SETTINGS = src.app.config.env.development
+dev:   SETTINGS = src.app.config.env.development
+prod:  SETTINGS = src.app.config.env.production
+
+local dev prod:
+	python manage.py runserver 0.0.0.0:7000 --settings=$(SETTINGS)
 
 check:
 	python manage.py check --deploy

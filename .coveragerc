@@ -1,5 +1,6 @@
 [run]
 omit =
+    *__init__.py
     src/app/config/*
     src/app/database/*
     src/app/migrations/*

@@ -31,9 +31,9 @@ test:
 	coverage report -m
 	coverage erase
 
-local: SETTINGS = src.app.config.env.development
-dev:   SETTINGS = src.app.config.env.development
-prod:  SETTINGS = src.app.config.env.production
+local: SETTINGS = src.app.config.settings.development
+dev:   SETTINGS = src.app.config.settings.development
+prod:  SETTINGS = src.app.config.settings.production
 
 local dev prod:
 	python manage.py runserver 0.0.0.0:7000 --settings=$(SETTINGS)

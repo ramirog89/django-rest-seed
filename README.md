@@ -1,46 +1,38 @@
-# DJANGO PLUGINS
-DJANGO REST FRAMEWORK
-https://www.django-rest-framework.org/
+django-rest-seed
+===================
+Working example of [django-rest-framework](https://github.com/tomchristie/django-rest-framework/tree/master)
+JWTAuthentication with simpleJwt ([rest_framework_simplejwt](https://github.com/davesque/django-rest-framework-simplejwt))
 
-# DJANGO JWT AUTH 
-DJANGO JWT Auth Token PLUGIN for REST_FRAMEWORK
-https://github.com/davesque/django-rest-framework-simplejwt
+## Requirements 
+* You should have [virtualenv](http://www.virtualenv.org/en/latest/#installation) installed. 
+* You should have [pip](https://pypi.org/project/pip/) installed.
 
-# SWAGGER - drf-yasg
-1 https://github.com/axnsan12/drf-yasg#installation
-2 https://drf-yasg.readthedocs.io/en/stable/security.html -> config
+## Install 
+Clone this repo, set up and activate a virtualenv:
+```console
+git clone git@github.com:ramirog89/django-rest-seed.git
+cd django-rest-seed
+virtualenv env
+source env/bin/activate
+```
 
-# PA LEER:
-1 https://medium.com/backticks-tildes/lets-build-an-api-with-django-rest-framework-part-2-cfb87e2c8a6c
+Setup dependencies:
+```console
+make install
+```
 
-2 https://dzone.com/articles/restful-api-authentication-basics-1
+```console
+make initdb
+python manage.py createsuperuser --username {username}
+```
 
-# Covereage report / testing
-https://coverage.readthedocs.io/en/v4.5.x/cmd.html#execution
-https://docs.djangoproject.com/en/2.2/topics/testing/advanced/#testing-reusable-applications
-https://medium.com/sulang/testing-django-rest-framework-d98279a5d3a5
+## Run the server 
+```console
+make server
+```
+Launch [http://localhost:7000](http://localhost:7000) in your browser.
 
-# DEploy Prod?
-https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Deployment
-
-# PoC:
-- Registrar un CRUD con endpoints privados/protegidos con errores estandares
-- Swagger + JWT Token
-- Authorization con JWT
-- DATABASE manager
-- PIP setup via requirements (todas las dependencias necesrarias)
-- Dejar un readme con el setup del seed y como crear routes
-- Poner un ORM?.. algo asi? que onda (postgres/msyql/sqlite?)
-  - Migrations?
-- Internationalization? (multilanguage... setup)
-- Testing
-  - Automation? how to run all test as part of CI
-  - Makefile .. ?
-- Deploy Production?
-  - Setup.cfg / Setup.py ?
-- Multiple environment config files.. ? 
-
-
-
-me gusta el README de aca
-https://github.com/erkarl/django-rest-framework-oauth2-provider-example
+## Tests 
+```console
+make test 
+```

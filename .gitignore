@@ -5,6 +5,8 @@ coverage/
 
 # IDE
 .vscode/
+.DS_Store
+.idea
 
 # PYTHON ENV
 env/

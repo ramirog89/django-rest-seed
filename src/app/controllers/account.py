@@ -16,6 +16,11 @@ class AccountController(BaseController):
         ('create'): CreateSerializer
     }
 
+    def single(self, request):
+        account = self.service.getSpecificAccount()
+        serializer = ListSerializer(instance=account)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
     def list(self, request):
         accountList = self.service.getAll()
         paginate_queryset = self.paginate_queryset(accountList)
@@ -50,11 +55,6 @@ class AccountController(BaseController):
             return Response(content, status=status.HTTP_204_NO_CONTENT)
         except server_error:
             raise server_error
-            # return Response({'error': 'SERVER ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-    def specialEndpoint(self, request):
-        account = self.service.getSpecificAccount()
-        return Response(account, status=status.HTTP_200_OK)
 
     def exampleRaiseException(self, request):
         raise ServiceUnavailable()

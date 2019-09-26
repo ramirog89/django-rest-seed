@@ -12,7 +12,8 @@ class BaseController(GenericViewSet):
   '''
   method_list = None
   method_serializer_classes = None
-  def get_queryset(query):
+
+  def get_queryset(self, query):
       pass
 
   def get_serializer_class(self):

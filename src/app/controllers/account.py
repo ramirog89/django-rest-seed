@@ -1,13 +1,12 @@
-from django.utils.decorators import classonlymethod
-
 from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from src.app.service.account import AccountService
 from src.app.serializer.account import ListSerializer, CreateSerializer
-from .Base import BaseController
+from src.app.controllers.base import BaseController
+from src.app.config.exceptions import ServiceUnavailable
 
 class AccountController(BaseController):
     service = AccountService()
@@ -54,3 +53,6 @@ class AccountController(BaseController):
     def specialEndpoint(self, request):
         account = self.service.getSpecificAccount()
         return Response(account, status=status.HTTP_200_OK)
+
+    def exampleRaiseException(self, request):
+        raise ServiceUnavailable()

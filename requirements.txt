@@ -7,3 +7,4 @@ PyYAML==5.1.2
 drf-yasg==1.16.1
 PyJWT==1.7.1
 packaging==19.2
+flake8==3.7.8

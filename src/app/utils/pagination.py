@@ -1,5 +1,6 @@
-from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination, OrderedDict
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
 from rest_framework.response import Response
+
 
 class CustomPagination(PageNumberPagination, LimitOffsetPagination):
     page_size = 5

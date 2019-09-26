@@ -1,0 +1,12 @@
+[flake8]
+exclude =
+        migrations
+        __pycache__,
+        manage.py,
+        base.py
+        development.py
+        production.py
+        testing.py
+        __init__.py
+
+max-line-length = 160

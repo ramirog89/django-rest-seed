@@ -1,16 +1,17 @@
 from rest_framework import status
-from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import server_error
 
 from src.app.service.account import AccountService
 from src.app.serializer.account import ListSerializer, CreateSerializer
 from src.app.controllers.base import BaseController
 from src.app.config.exceptions import ServiceUnavailable
 
+
 class AccountController(BaseController):
     service = AccountService()
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     method_serializer_classes = {
         ('create'): CreateSerializer
     }
@@ -45,10 +46,11 @@ class AccountController(BaseController):
         try:
             account = self.service.getById(pk=pk)
             account.delete()
-            content = { 'status': 'NO CONTENT' }
+            content = {'status': 'NO CONTENT'}
             return Response(content, status=status.HTTP_204_NO_CONTENT)
-        except:
-            return Response({ 'error': 'SERVER ERROR' }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        except server_error:
+            raise server_error
+            # return Response({'error': 'SERVER ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     def specialEndpoint(self, request):
         account = self.service.getSpecificAccount()

@@ -38,19 +38,29 @@ make prod
 
 Launch [http://localhost:7000](http://localhost:7000) in your browser.
 
+## Linter
+```console
+make lint
+```
+
 ## Tests 
 ```console
 make test 
+```
+
+## Build
+```console
+make build 
 ```
 
 ## Docker 
 
 Image build
 ```console
-dockerbuild . -t python-django-starter 
+make docker-build
 ```
 
 Image run
 ```console
-docker run -p:7000:7000 -i -t python-django-starter 
+make docker-run
 ```

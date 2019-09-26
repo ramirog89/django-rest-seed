@@ -2,7 +2,7 @@
 SOURCE_DIR = ./src/app
 COVERAGE_DIR = coverage/
 LOGS_DIR = logs/
-BUILD_DIR = logs/
+BUILD_DIR = build/
 
 DOCKER_IMAGE = django-backend
 SERVER_PORT = 7000
@@ -51,7 +51,8 @@ test:
 check:
 	python manage.py check --deploy --settings=src.app.config.settings.production
 
-build:
+build: check
+	check
 	python setup.py build
 
 ####### DEPLOY

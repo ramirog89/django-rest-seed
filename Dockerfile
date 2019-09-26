@@ -11,7 +11,7 @@ RUN apk del .tmp-build-deps
 
 RUN mkdir /app
 WORKDIR /app
-COPY ./ /app
+COPY ./build /app
 
 RUN chmod -R 777 /app
 RUN pip3 install packaging

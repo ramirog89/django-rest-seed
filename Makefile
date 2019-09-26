@@ -2,8 +2,9 @@
 SOURCE_DIR = ./src/app
 COVERAGE_DIR = coverage/
 LOGS_DIR = logs/
+BUILD_DIR = logs/
 
-DOCKER_IMAGE = python-django-starter
+DOCKER_IMAGE = django-backend
 SERVER_PORT = 7000
 
 local: SETTINGS = src.app.config.settings.development
@@ -15,6 +16,7 @@ clean:
 	# find . -name '*.pyc' -exec rm --force {}
 	# find . -name '*.pyo' -exec rm --force {}
 	# find . -name '*~' -exec rm --force  {}
+	rm -rf $(BUILD_DIR)
 	rm -rf $(COVERAGE_DIR)
 	rm -r $(LOGS_DIR)*
 
@@ -45,9 +47,18 @@ test:
 	coverage report -m
 	coverage erase
 
-####### BUILD / DEPLOY
+####### BUILD
 check:
-	python manage.py check --deploy
+	python manage.py check --deploy --settings=src.app.config.settings.production
 
-image-run:
+build:
+	python setup.py build
+
+####### DEPLOY
+
+docker-build: build ## Ver de hacer un
+	build
+	docker build -t . $(DOCKER_IMAGE)
+
+docker-run:
 	docker run -p:7000:7000 -i -t $(DOCKER_IMAGE)

@@ -97,3 +97,23 @@ test por capa.
 - Dtos vs Serializers
 - Centralizar settings
 - Buena practica overridear el AuthUser model
+
+
+
+
+
+### Styles Python
+- https://pypi.org/project/pylint-django/
+- https://www.pylint.org/#install
+  - https://pylint.readthedocs.io/en/latest/user_guide/run.html
+
+### Customizar Auth Model
+- https://docs.djangoproject.com/en/2.2/topics/auth/customizing/
+- https://wsvincent.com/django-custom-user-model-tutorial/
+
+### django best practices 
+- https://django-best-practices.readthedocs.io/en/latest/
+- https://steelkiwi.com/blog/best-practices-working-django-models-python/
+
+### Task Runner
+- invoke: http://www.pyinvoke.org/

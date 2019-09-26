@@ -1,11 +1,4 @@
-.PHONY : start_server dev prod
-
-initdb:
-	python manage.py migrate
-
-migrate:
-	python manage.py makemigrations
-	python manage.py migrate
+####### INITIALIZATION
 
 clean:
 	# find . -name '*.pyc' -exec rm --force {}
@@ -15,21 +8,22 @@ clean:
 	rm -r logs/*
 	rm -rf *.egg-info
 
-createdatabase:
-	docker mysql
-
-databaserun:
-	docker run mysql
-
 install:
 	pip install --upgrade setuptools
 	pip install --upgrade -r requirements.txt
 
-test:
-	coverage run --source="./src/app" manage.py test src --force-color
-	coverage html -d coverage
-	coverage report -m
-	coverage erase
+####### DATABASE
+
+initdb:
+	python manage.py migrate
+
+migrate:
+	python manage.py makemigrations
+	python manage.py migrate
+
+####### RUN SERVER
+
+.PHONY : start_server dev prod
 
 local: SETTINGS = src.app.config.settings.development
 dev:   SETTINGS = src.app.config.settings.development
@@ -38,15 +32,24 @@ prod:  SETTINGS = src.app.config.settings.production
 local dev prod:
 	python manage.py runserver 0.0.0.0:7000 --settings=$(SETTINGS)
 
+####### TESTING
+
+SOURCE_DIR = ./src/app
+
+lint:
+	flake8 $(SOURCE_DIR)
+
+test:
+	coverage run --source="$(SOURCE_DIR)" manage.py test src --force-color
+	coverage html -d coverage
+	coverage report -m
+	coverage erase
+
+####### BUILD / DEPLOY
+
 check:
 	python manage.py check --deploy
 
-docker-run:
-	docker build \
-		--file=./Dockerfile \
-		--tag=rest_app ./
-	docker run \
-		--detach=false \
-		--name=rest_app \
-		--publish=$(HOST):8080 \
-		rest_app
+DOCKER_IMAGE = python-django-starter
+image-run:
+	docker run -p:7000:7000 -i -t $(DOCKER_IMAGE)

@@ -39,7 +39,7 @@ class BaseController(GenericViewSet):
       request = self.initialize_request(request, *args, **kwargs)
       self.request = request
       self.headers = self.default_response_headers
-      
+
       currentController = type(self)
       # Obtengo los metodos del currentController
       method_list = [func for func in dir(currentController) if callable(getattr(currentController, func)) and "_" not in func]

@@ -90,3 +90,10 @@ test por capa.
 
 # Testing Unit vs Integration
 - https://realpython.com/python-testing/#unit-tests-vs-integration-tests
+
+# Minuta Changes:
+- Exception Handler centralizado
+- IoC -> Research (Pros,Cos)
+- Dtos vs Serializers
+- Centralizar settings
+- Buena practica overridear el AuthUser model

@@ -19,9 +19,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'drf_yasg',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -29,7 +31,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'src.app.middleware.AuthorizationMiddleware'
+    'src.app.middleware.AuthorizationMiddleware',
 ]
 
 ROOT_URLCONF = 'src.app.config.urls'
@@ -162,6 +164,10 @@ LOGGING = {
         },
     },
 }
+
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+]
 
 # MIGRATION_MODULES = {
 #     'app': 'src.app.database',

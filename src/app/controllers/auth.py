@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.views import TokenViewBase
 # from rest_framework.permissions import IsAuthenticated
 
-from src.app.serializer import TokenSerializer
+from src.app.service.serializer import TokenSerializer
 
 
 class AuthenticationController(TokenViewBase, viewsets.GenericViewSet):

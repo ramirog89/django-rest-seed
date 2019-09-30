@@ -40,8 +40,7 @@ urlpatterns = [
     path('api/account/', controllers.AccountController.as_view({'get': 'list'}), name='account_list'),
     path('api/account/create', controllers.AccountController.as_view({'post': 'create'}), name='account_create'),
     path('api/account/special-endpoint', controllers.AccountController.as_view({'get': 'specialEndpoint'}), name='account_special_endpoint'),
-    path('api/account/exampleRaiseException', controllers.AccountController.as_view({'get': 'exampleRaiseException'}), name='account_special_endpoint'),
-    re_path(r'^api/account/(?P<pk>[0-9]+)$', controllers.AccountController.as_view({'get': 'single'}), name='account_single'),
+    re_path(r'^api/account/(?P<pk>[0-9]+)$', controllers.AccountController.as_view({'get': 'account_detail'}), name='account_detail'),
     re_path(r'^api/account/update/(?P<pk>[0-9]+)$', controllers.AccountController.as_view({'put': 'update'}), name='account_update'),
     re_path(r'^api/account/delete/(?P<pk>[0-9]+)$', controllers.AccountController.as_view({'delete': 'delete'}), name='account_delete'),
 ]

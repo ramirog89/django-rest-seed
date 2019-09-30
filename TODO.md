@@ -50,3 +50,7 @@ Como se hacen bien de 0 y cada cambio como se realiza correctamente.
 ### django best practices 
 - https://django-best-practices.readthedocs.io/en/latest/
 - https://steelkiwi.com/blog/best-practices-working-django-models-python/
+
+## DI
+ - serum: https://pypi.org/project/serum/
+  one should “depend upon abstractions, not concretions."

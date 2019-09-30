@@ -1,60 +1,56 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.exceptions import server_error
+from rest_framework.viewsets import GenericViewSet
 from serum import inject
 
 from src.app.service.account import AccountService
-from src.app.service.serializer.account import ListSerializer, CreateSerializer
-from src.app.controllers.base import BaseController
-from src.app.config.exceptions import ServiceUnavailable
+from src.app.service.serializer.account import AccountDTO
+from src.app.config.exceptions import EntityNotFound
 
 
-class AccountController(BaseController):
+class AccountController(GenericViewSet):
+
+    permission_classes = [IsAuthenticated]
+    serializer_class = AccountDTO
+
     @inject
     def __init__(self, service: AccountService, **kwargs):
         super().__init__(**kwargs)
         self.service = service
 
-    permission_classes = [IsAuthenticated]
-    method_serializer_classes = {
-        ('create'): CreateSerializer
-    }
+    def get_queryset(query):
+        pass
 
     def account_detail(self, request, pk):
-        account = self.service.get_by_id(pk=pk)
-        serializer = ListSerializer(instance=account)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        try:
+            account = self.service.get_by_id(pk=pk)
+            return Response(account, status.HTTP_200_OK)
+        except Exception:
+            raise EntityNotFound
 
     def list(self, request):
         accountList = self.service.get_all()
         paginate_queryset = self.paginate_queryset(accountList)
-        serializer = ListSerializer(paginate_queryset, many=True)
-        return self.get_paginated_response(serializer.data)
+        dtos = AccountDTO(paginate_queryset, many=True)
+        return self.get_paginated_response(dtos.data)
 
     def create(self, request):
-        serializer = CreateSerializer(data=request.data)
-        if serializer.is_valid(raise_exception=True):
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        dto = AccountDTO(data=request.data)
+        if dto.is_valid():
+            return Response(self.service.create(dto), status=status.HTTP_201_CREATED)
+        return Response(dto.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def update(self, request, pk):
-        account = self.service.get_by_id(pk=pk)
-        serializer = CreateSerializer(account, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        dto = AccountDTO(data=request.data)
+        if dto.is_valid():
+            return Response(self.service.update(dto, pk), status=status.HTTP_200_OK)
+        return Response(dto.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         try:
-            account = self.service.get_by_id(pk=pk)
-            account.delete()
+            self.service.delete(pk=pk)
             content = {'status': 'NO CONTENT'}
             return Response(content, status=status.HTTP_204_NO_CONTENT)
-        except server_error:
-            raise server_error
-
-    def exampleRaiseException(self, request):
-        raise ServiceUnavailable()
+        except Exception:
+            return Response({'error': 'SERVER ERROR'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
